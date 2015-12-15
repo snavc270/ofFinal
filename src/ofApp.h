@@ -27,6 +27,7 @@ class ofApp : public ofBaseApp{
     int g;
     int b;
     
+    int lightsensor; 
 #ifdef _USE_LIVE_VIDEO
     ofVideoGrabber      vidGrabber;
 #endif
@@ -45,7 +46,29 @@ class ofApp : public ofBaseApp{
     bool bTimerReached;
     vector<Particle> particles;
     vector<Particle> particles2;
-    vector<Particle> particles3; 
+    vector<Particle> particles3;
+    vector<Particle> particles4;
+    vector<Particle> particles5;
+    vector<Particle> particles6;
+    vector<Particle> particles7;
+    vector<Particle> particles8;
+    vector<Particle> particles9;
+    vector<Particle> particles10;
+    
+    ofTrueTypeFont myfont;
+    ofArduino	ard;
+    bool		bSetupArduino;			// flag variable for setting up arduino once
+    
+private:
+    
+    void setupArduino(const int & version);
+    void digitalPinChanged(const int & pinNum);
+    void analogPinChanged(const int & pinNum);
+    void updateArduino();
+    
+    
+    string potValue;
+    
   
 		
 };

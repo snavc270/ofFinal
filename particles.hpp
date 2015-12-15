@@ -36,10 +36,20 @@ public:
     
     void resetForce();
     void addDampening();
+    void clear(); 
    
     ofPolyline polyline;
     
+    ofVec2f lastPoint;
+    ofVec3f point; 
+    vector <ofPolyline> polylines;
+    vector<ofVec3f> points;
+    vector<ofVec3f> vertices; 
+    bool leftMouseButtonPressed;
+    
     void addAttraction(float px, float py, float radius, float strength);
     
-  
+    int pr;
+    int pg;
+    int pb;
 };

@@ -42,6 +42,9 @@ void Particle:: setInitialCondition(float px, float py, float vx, float vy){
 void Particle::update(){
     vel += force;
     pos += 3*vel;
+    
+    ofSetColor(pr, pg, pb);
+
 }
 
 void Particle::addRepulsion(float px, float py, float radius, float strength){
@@ -59,23 +62,17 @@ void Particle::addRepulsion(float px, float py, float radius, float strength){
 }
 
 void Particle::draw(){
-//    ofSetColor(r,g,b);
-//    ofCircle(pos.x, pos.y, size);
-    polyline.lineTo(pos.x, pos.y);
+  
+    
+    
+    vertices = polyline.getVertices();  // If you haven't seen a vector < >, before
+            for (int p=0; p<100; p+=10) {
+                point = polyline.getPointAtPercent(p/100.0);  // Returns a point at a percentage along the polyline
+                ofCircle(point, 4);
+            }
     polyline.lineTo(pos.x, pos.y);
     
-//    for (int i=0; i<polylines.size(); i++) {
-//        ofPolyline polyline = polylines[i];
-//        polyline.draw();
-//        float numPoints = polyline.size();
-//        float normalLength = 50;
-//        for (int p=0; p<500; p+=1) {
-//            ofVec3f point = polyline.getPointAtPercent(p/500.0);
-//            float floatIndex = p/100.0 * (numPoints-1);
-//            ofVec3f normal = polyline.getNormalAtIndexInterpolated(floatIndex) * normalLength;
-//            ofLine(point-normal/2, point+normal/2);
-//        }
-//    }
+
     polyline.draw();
     
 }
@@ -89,6 +86,14 @@ void Particle::addDampening(){
     force.y = force.y - vel.y *dampening;
 }
 
+
+void Particle::clear(){
+    points= polyline.getVertices();
+    points.clear();
+    polyline.clear();
+    
+    
+}
 
 
 
