@@ -48,7 +48,7 @@ void ofApp::setup(){
         particles2.push_back(myParticle2);
     }
     
-    for(int i=0; i<50; i++){
+    for(int i=0; i<20; i++){
         Particle myParticle3;
         myParticle3.setInitialCondition(ofRandom(0,1000), ofRandom(0,1000), 0, 0);
         
@@ -385,7 +385,10 @@ void ofApp::draw(){
     ofSetHexColor(0x333333);
 
     ofSetColor(0);
-//
+    
+    if(drawContours== true){
+        contourFinder.draw();
+    }
     
     for (int i = 0; i < contourFinder.nBlobs; i++){
         contourFinder.blobs[i].draw(ofGetWindowWidth(), ofGetWindowHeight());
@@ -423,7 +426,7 @@ void ofApp::draw(){
     
     for(int i=0; i<particles3.size(); i++){
         particles3[i].draw();
-        if(lightsensor>730){
+        if(lightsensor>725){
             particles3[i].clear();
             particles3[i].setInitialCondition(ofRandom(0,1000), ofRandom(0,1000), 0, 0);
             
@@ -504,9 +507,13 @@ void ofApp::keyPressed(int key){
     
     switch(key){
             case 'd':
-            contourFinder.draw();
+            drawContours= true;
     }
     
+    switch(key){
+        case 'e':
+            drawContours= false;
+    }
    
     switch(key){
         case 'c':
@@ -519,6 +526,9 @@ void ofApp::keyPressed(int key){
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
         ard.sendDigital(13, ARD_LOW);
+    
+   
+
 }
 
 //--------------------------------------------------------------

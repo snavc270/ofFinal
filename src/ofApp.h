@@ -55,6 +55,8 @@ class ofApp : public ofBaseApp{
     vector<Particle> particles9;
     vector<Particle> particles10;
     
+    bool drawContours; 
+    
     ofTrueTypeFont myfont;
     ofArduino	ard;
     bool		bSetupArduino;			// flag variable for setting up arduino once
